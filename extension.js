@@ -12,33 +12,24 @@ function activate(context) {
 
 	// Use the console to output diagnostic information (console.log) and errors (console.error)
 	// This line of code will only be executed once when your extension is activated
-	console.log('Congratulations, your extension "clear-transfer-json" is now active!');
-	let disposable
 	// The command has been defined in the package.json file
 	// Now provide the implementation of the command with  registerCommand
 	// The commandId parameter must match the command field in package.json
-	disposable = vscode.commands.registerCommand('clear-transfer-json.helloWorld', function () {
+	let disposable = vscode.commands.registerCommand('clear-transfer-json.clearTransfer', function () {
 		// The code you place here will be executed every time your command is executed
 
-		// Display a message box to the user
-		let time = new Date()
-		vscode.window.showInformationMessage(time);
-	});
-	context.subscriptions.push(disposable);
-
-	disposable = vscode.commands.registerCommand('clear-transfer-json.sayHello', function () {
-		// The code you place here will be executed every time your command is executed
-
-		// Display a message box to the user
-		vscode.window.showInformationMessage('Hellow World!');
-	});
-	context.subscriptions.push(disposable);
-
-	disposable = vscode.commands.registerCommand('clear-transfer-json.saySample', function () {
-		// The code you place here will be executed every time your command is executed
-
-		// Display a message box to the user
-		vscode.window.showInformationMessage('Hellow Sampla!');
+		// Display a message box to the user6
+		vscode.window.activeTextEditor.edit(editBuilder => {
+			// 从开始到结束，全量替换
+			const end = new vscode.Position(vscode.window.activeTextEditor.document.lineCount + 1, 0);
+			let preText = vscode.window.activeTextEditor.document.getText()
+			preText = preText.replace(/\\/g, '')
+			preText = preText.replace(/"\{/g, '{')
+			preText = preText.replace(/\}"/g, '}')
+			preText = preText.replace(/"\[/g, '[')
+			preText = preText.replace(/\]"/g, ']')
+			editBuilder.replace(new vscode.Range(new vscode.Position(0, 0), end), preText);
+		});
 	});
 	context.subscriptions.push(disposable);
 }

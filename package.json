@@ -2,7 +2,8 @@
 	"name": "clear-transfer-json",
 	"displayName": "clear_transfer_json",
 	"description": "clear json",
-	"version": "0.0.1",
+	"publisher": "Guanrui",
+	"version": "0.0.4",
 	"engines": {
 		"vscode": "^1.52.0"
 	},
@@ -10,24 +11,14 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:clear-transfer-json.helloWorld",
-		"onCommand:clear-transfer-json.sayHello",
-		"onCommand:clear-transfer-json.saySample"
+		"onCommand:clear-transfer-json.clearTransfer"
 	],
 	"main": "./extension.js",
 	"contributes": {
 		"commands": [
 			{
-				"command": "clear-transfer-json.helloWorld",
-				"title": "Hello World"
-			},
-			{
-				"command": "clear-transfer-json.sayHello",
-				"title": "Hello World"
-			},
-			{
-				"command": "clear-transfer-json.saySample",
-				"title": "Hello Sample"
+				"command": "clear-transfer-json.clearTransfer",
+				"title": "Clear Transfer"
 			}
 		]
 	},
